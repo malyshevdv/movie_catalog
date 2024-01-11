@@ -37,8 +37,6 @@ class MovieTypes:
         self.multfilmy= MovieType('multfilmy','multfilmy.txt')
         self.foreinmultfilmy= MovieType('multfilmy/zarubezhnye-multiki', 'foreinmultfilmy.txt')
 
-
-
 adress_films = 'films/'
 #adress_films = 'multfilmy/anime-filmy'
 filename = 'amine'
