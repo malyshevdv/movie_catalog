@@ -11,8 +11,15 @@ class Actor(models.Model):
     def __str__(self):
         return self.name
 
+class MovieType(models.Model):
+   name = models.CharField(max_length=50)
+   def __str__(self):
+        return self.name
+
+
 class Movie(models.Model):
     url = models.CharField(max_length=150, null=True)
+    type = models.ForeignKey(MovieType, null=True, blank=True, on_delete=models.SET_NULL)
 
     title = models.CharField(max_length=150, null=True, blank=True)
     titleRu = models.CharField(max_length=150, null=True, blank=True)
@@ -32,6 +39,24 @@ class Movie(models.Model):
         return f'{self.title}  => {self.url}'
 
 class MovieCast(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, null=True, on_delete=models.SET_NULL)
+    actor = models.ForeignKey(Actor, null=True, on_delete=models.SET_NULL)
     rollname = models.CharField(max_length=50, null=True, blank=True)
+    salary = models.DecimalField(max_digits=15, decimal_places=0, null=True)
+
+
+class MovieDirectors(models.Model):
+    movie = models.ForeignKey(Movie, null=True, on_delete=models.SET_NULL)
+    director = models.ForeignKey(Actor, null=True, on_delete=models.SET_NULL)
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+
+
+class MovieCountries(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+
