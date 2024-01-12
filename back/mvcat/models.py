@@ -6,7 +6,7 @@ from django.db import models
 class Actor(models.Model):
     name = models.CharField(max_length=150)
     birthday = models.DateField(null=True, default='01/01/1970')
-
+    age = models.CharField(max_length=150)
 
     def __str__(self):
         return self.name
@@ -31,4 +31,7 @@ class Movie(models.Model):
     def __str__(self):
         return f'{self.title}  => {self.url}'
 
-
+class MovieCast(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
+    rollname = models.CharField(max_length=50, null=True, blank=True)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Actor, Movie
+from .models import Actor, Movie, MovieCast
 
 # Register your models here.
 
@@ -7,7 +7,12 @@ from .models import Actor, Movie
 class ActorAdmin(admin.ModelAdmin):
     pass
 
+
+class movieCastInlineTab(admin.TabularInline):
+    model = MovieCast
+
+
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    pass
+    inlines = [movieCastInlineTab]
 
