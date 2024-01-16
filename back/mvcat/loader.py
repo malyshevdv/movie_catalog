@@ -1,20 +1,28 @@
 import requests
 from requests_html import HTMLSession
+#from requests import Session as HTMLSession
+#from site-packages import
+
 import lxml
 from lxml import etree
 from html.parser import HTMLParser
+#from .models import *
 
 # This is a sample Python script.
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-
+#dd = Movie.ob
 
 statTypes = ('')
 
 
 adress_domen = 'https://191223.lordfilm4.black/'
+
+
+
+
 
 class MovieType:
     def __init__(self, adress_films : str, filename : str = ''):
@@ -46,6 +54,9 @@ AllTypes =  MovieTypes();
 
 #site0 = 'https://191223.lordfilm4.black/films/'
 #site1 = 'https://191223.lordfilm4.black/films/page/2/'
+
+
+
 
 def loadFilmsType(ob : MovieType):
 
@@ -94,7 +105,7 @@ def loadFilmsType(ob : MovieType):
     print('The END')
 
 
-class Movie:
+class Movie3:
     def __init__(self):
         self.actors = []
         self.date_premier = ''
@@ -116,11 +127,11 @@ class Movie:
         self.poster = ''
 
 
-def loadFilmInfo(sampleAddress):
+def loadFilmInfo(sampleAddress = 'https://191223.lordfilm4.black/7302-serial-hanna-2019.html'):
     session = HTMLSession()
     res = session.get(sampleAddress)
 
-    myMovie = Movie()
+    myMovie = Movie3()
 
     films = res.html.find('.fdesc', first=False)
     for item in films:
@@ -146,7 +157,7 @@ def loadFilmInfo(sampleAddress):
     for item in films:
         dd = 0
 
-    open('', mode='', )
+    #open('', mode='', )
 
 
     films = res.html.find('.flist', first=False)
@@ -185,19 +196,19 @@ def loadFilmInfo(sampleAddress):
 
 
     print('dd')
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-
-   # loadFilmsType(AllTypes.multserialy)
-
-    sampleAddress = 'https://191223.lordfilm4.black/23082-chelovek-koala-2023.html'
-
-    myStruct = loadFilmInfo(sampleAddress);
+    return myMovie;
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def loadInfo(address='https://191223.lordfilm4.black/7302-serial-hanna-2019.html'):
+    res = loadFilmInfo(address)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    if res.title != '':
+        print(res.title)
+
+    return res
+def fileLoader(fileName):
+    res = []
+    with open(fileName, mode='r') as file:
+        return file.readlines()
+
+

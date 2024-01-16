@@ -18,7 +18,7 @@ class MovieType(models.Model):
 
 
 class Movie(models.Model):
-    url = models.CharField(max_length=150, null=True)
+    url = models.CharField(max_length=250, null=True)
     type = models.ForeignKey(MovieType, null=True, blank=True, on_delete=models.SET_NULL)
 
     title = models.CharField(max_length=150, null=True, blank=True)

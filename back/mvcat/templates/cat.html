@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{%extends 'base.html'%}
+
+{%block content%}
+    CONTENT 1
+
+  Movie count is {{movieCount}}
+  My name is {{myName}}
+
+<p>ALL MOVIETYPES</p>
+
+
+    {%for item in movieType %}
+        <a href={{item.name}}'/'>    {{item.name}}  </a>
+    {%endfor%}
+
+{%endblock%}
+
