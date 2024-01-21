@@ -36,7 +36,7 @@ class movieCountryInlineTab(admin.TabularInline):
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    list_display =('title', 'titleRu', 'year', 'url')
+    list_display =('title', 'titleRu', 'year', 'is_published', 'url')
     list_filter = ['type', 'title']
     inlines = [movieCastInlineTab, movieDirectorsInlineTab, movieCountryInlineTab]
     search_fields = ['title', 'titleRu', 'url']

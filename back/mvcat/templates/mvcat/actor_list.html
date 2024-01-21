@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>Actors and actress</h1>
+<ul>
+{%for item in object_list%}
+
+    <li><a href={{item.name}}>{{item.name}}</a></li>
+
+{%endfor%}
+</ul>
+
+{% endblock %}

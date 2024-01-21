@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+
+<div>
+{%for item in actors%}
+    <li>{{item.name}}</li>
+{%endfor%}
+
+
+<h1>ALL movies - {{movietype}}</h1>
+<div class="biglist">
+{%for item in object_list%}
+
+    <div class="movie_card_short">
+        <div>
+            <img src="{% static 'mvcat/images/movie_sample.png' %}">
+        </div>
+        <div>
+            <li><a href={{item.url}}>{{item.url}}</a></li>
+
+        </div>
+
+    </div>
+
+
+{%endfor%}
+</div>
+
+
+ {% for contact in page_obj %}
+    {# Each "contact" is a Contact model object. #}
+    {{ contact.url|upper }}<br>
+    ...
+{% endfor %}
+
+
+
+
+
+
+
+{% endblock %}

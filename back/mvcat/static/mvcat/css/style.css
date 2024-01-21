@@ -19,6 +19,20 @@ div {
   width: 100%;
 }
 
+.biglist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap : wrap;
+  justify-content: center;
+}
+
+.movie_card_short {
+  width: 20rem;
+  height: 23rem; 
+   padding: 20px;
+
+}
+
 .avatar {
   width:55px;
   height:55px

@@ -1,13 +1,14 @@
 from django.db import models
-from Actors import Actor
-from MovieType import MovieType
+from django.conf import settings
+from django.contrib.auth.models import User
+
+from .Actors import Actor
+from .MovieType import MovieType
+from .Countries import Country
+
+from datetime import date
 
 # Create your models here.
-
-
-
-
-
 
 class Movie(models.Model):
     url = models.CharField(max_length=250, null=True)
@@ -26,29 +27,32 @@ class Movie(models.Model):
 
     imdb = models.CharField(max_length=15, null=True, blank=True)
     poster = models.CharField(max_length=150, null=True, blank=True)
+    auther = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    date_premier = models.DateField(null=True, blank=True)
+
+    @property
+    def is_published(self):
+        """Determines if the book is overdue based on due date and current date."""
+        return bool(self.date_premier and date.today() > self.date_premier)
 
     def __str__(self):
         return f'{self.title}  => {self.url}'
 
-
+    class Meta:
+        # …
+        permissions = (("can_mark_returned", "Set book as returned"),)
 
 
 class MovieCast(models.Model):
     movie = models.ForeignKey(Movie, null=True, on_delete=models.SET_NULL)
     actor = models.ForeignKey(Actor, null=True, on_delete=models.SET_NULL)
     rollname = models.CharField(max_length=50, null=True, blank=True)
-    salary = models.DecimalField(max_digits=15, decimal_places=0, null=True)
+    salary = models.DecimalField(max_digits=15, decimal_places=0, null=True, default=0)
 
 
 class MovieDirectors(models.Model):
     movie = models.ForeignKey(Movie, null=True, on_delete=models.SET_NULL)
     director = models.ForeignKey(Actor, null=True, on_delete=models.SET_NULL)
-
-
-class Country(models.Model):
-    name = models.CharField(max_length=50)
-    def __str__(self):
-        return self.name
 
 
 class MovieCountries(models.Model):

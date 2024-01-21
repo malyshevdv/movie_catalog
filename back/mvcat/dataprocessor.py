@@ -1,4 +1,4 @@
-from .models import *
+from back.mvcat.models.Movies import *
 
 def loadInfo(address = 'https://191223.lordfilm4.black/7302-serial-hanna-2019.html'):
     pass

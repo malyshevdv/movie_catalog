@@ -2,34 +2,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <link rel="stylesheet" href="style.css">
+{% load static %}
+   <link rel="stylesheet" href={% static 'mvcat/css/style.css' %}>
     <title>{% block title %}My amazing site{% endblock %}</title>
 </head>
 
 <body>
+
     {% load static %}
-    <img
-        src="{% static 'mvcat/images/man.jpg' %}"
-        style="width:155px;height:140px";
-    >
-    <p>ddd={% static '/mvcat/images/11.png' %}</p>
-    <img src='{% static "/mvcat/images/11.png" %}' alt="My image">
 
-    <div id="sidebar">
-        {% block sidebar %}
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/cat2/">cat 2</a></li>
-            <li><a href="/cat3/">cat 3</a></li>
-            <li><a href="/movietype/">ALL Movietypes</a></li>
+    <div class="gor">
 
-        </ul>
-        {% endblock %}
+        <div >
+            <img
+                    class="avatar"
+                    src="{% static 'mvcat/images/logo.png' %}"
+                >
+        </div>
+        <div class="centralspace">
+
+            {% if  user.is_authenticated %}
+                <p>{{user}}</p>
+            {% endif %}
+
+            <p>Logged:{{user.is_authenticated}}</p>
+        </div>
+        <div class="gor">
+            <div>
+                {% if user.is_authenticated %}
+                    <p>{{ user.get_username }}</p>
+                    <p><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></p>
+                {% else %}
+                    <p><a href="{% url 'login' %}?next={{ request.path }}">Login</a></p>
+                {% endif %}
+
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                    <img class="avatar" src="{% static 'mvcat/images/man.jpg' %}"  >
+                {% else %}
+                    <img class="avatar" src="{% static 'mvcat/images/unknown.png' %}"  >
+                {% endif %}
+
+            </div>
+        </div>
     </div>
 
-    <div id="content">
-        {% block content %}{% endblock %}
+    <div class="gor maxheight">
+        <div id="sidebar">
+            {% block sidebar %}
+            <ul>
+                <li><a href="/"  >Home</a></li>
+                <li><a href="/cat2/">cat 2</a></li>
+                <li><a href="/cat3/">cat 3</a></li>
+                <li><a href="/movietype/">ALL Movietypes</a></li>
+                <li><a href="/actors/">Actors and actress</a></li>
+                <li><a href="/movies/">All movies</a></li>
+
+
+            </ul>
+            {% endblock %}
+
+        </div>
+
+        <div class = 'centralspace' id="content">
+            {% block content %}
+
+
+            {% endblock %}
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
+        </div>
     </div>
+
 </body>
 </html>
