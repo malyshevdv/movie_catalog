@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Movie, MovieType, Actor
+from .models import Movie, MovieType, Actor, MovieCountries, MovieCast, MovieDirectors
 from django.views import generic
 from django.shortcuts import get_object_or_404
 
@@ -83,8 +83,13 @@ class MovieDetailView(generic.DetailView):
         return Movie.objects.get(id = self.kwargs['id'])
 
     def get_context_data(self, **kwargs):
+        myId = self.kwargs['id']
         context = super().get_context_data(**kwargs)
-        context['item'] = Movie.objects.get(id = self.kwargs['id'])
+        context['item'] = Movie.objects.get(id = myId)
+
+        context['countries'] = MovieCountries.objects.filter(movie = myId)
+        context['actors'] = MovieCast.objects.filter(movie=myId)
+        context['directors'] = MovieDirectors.objects.filter(movie=myId)
 
         #context['ppp'] = self.kwargs['ppp']
 
