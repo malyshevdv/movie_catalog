@@ -1,49 +1,11 @@
 from django.shortcuts import render
-from .models import Movie, MovieType, Actor, MovieCountries, MovieCast, MovieDirectors
+from ..models import Movie, MovieType, Actor, MovieCountries, MovieCast, MovieDirectors
 from django.views import generic
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
-@login_required
-def Index(request):
-
-    movieCount = Movie.objects.all().count()
-
-
-
-    myList = ['1','2','3','4','5']
-
-    intercount = request.session.get('intercount', 0)
-    request.session['intercount'] = intercount + 1
-
-    props = {
-        'movieCount' : movieCount,
-        'movieType' : list(MovieType.objects.all()),
-        'myName' : "Denis Malyshev",
-        'movieType2': myList,
-        'intercount' : request.session.get('intercount', 0)
-    }
-
-
-
-    return render(request, 'cat.html', context = props)
-
-
-class MovieTypeView(generic.ListView):
-    model = MovieType
-    #context_object_name = 'movietype_list'
-    #queryset = MovieType.abjects.all()
-
-class ActorsView(generic.ListView):
-    model = Actor
-
-    def get_queryset(self):
-        return  Actor.objects.all()
-
-
 class MovieListView(generic.ListView):
     model = Movie
     paginate_by = 20
@@ -68,7 +30,6 @@ class MovieByTypeListView(generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['movietype'] = self.type2
-        context['actors'] = Actor.objects.all()
         return context
 
 class MovieDetailView(generic.DetailView):
@@ -102,11 +63,4 @@ class MovieDetailView(generic.DetailView):
 
 
 
-def Cat2(request):
-    props = {}
-    return render(request, 'cat2.html', context=props)
-
-def Cat3(request):
-    props = {}
-    return render(request, 'cat3.html', props)
 

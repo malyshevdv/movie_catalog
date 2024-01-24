@@ -10,7 +10,8 @@
 {%endfor%}
 
 
-<h1>ALL movies - {{movietype}}</h1>
+<h1>{{movietype}}</h1>
+
 <div class="biglist">
 {%for item in object_list%}
 
@@ -19,7 +20,7 @@
             <img src="{% static 'mvcat/images/movie_sample.png' %}">
         </div>
         <div>
-            <li><a href={{item.url}}>{{item.url}}</a></li>
+            <li><a href='/movie/{{item.id}}'>{{item.url}}</a></li>
 
         </div>
 
@@ -28,18 +29,5 @@
 
 {%endfor%}
 </div>
-
-
- {% for contact in page_obj %}
-    {# Each "contact" is a Contact model object. #}
-    {{ contact.url|upper }}<br>
-    ...
-{% endfor %}
-
-
-
-
-
-
 
 {% endblock %}

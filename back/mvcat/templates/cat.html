@@ -10,5 +10,17 @@
 
 Number enter: {{intercount}}
 
+<form action="" method="post">
+    {% csrf_token %}
+    <p>MY FORM</p>
+    <table>
+        {{actorform}}
+    </table>
+    <input type="submit" value="Submit">
+  </form>
+
+
+
+
 {%endblock%}
 

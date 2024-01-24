@@ -48,6 +48,9 @@ class MovieCast(models.Model):
     actor = models.ForeignKey(Actor, null=True, on_delete=models.SET_NULL)
     rollname = models.CharField(max_length=50, null=True, blank=True)
     salary = models.DecimalField(max_digits=15, decimal_places=0, null=True, default=0)
+    stringnimber = models.DecimalField(decimal_places=0, max_digits=4, default=0, null=True)
+    class Meta:
+        pass
 
 
 class MovieDirectors(models.Model):

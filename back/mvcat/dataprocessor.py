@@ -1,7 +1,29 @@
-from back.mvcat.models.Movies import *
+from .models import Movie, MovieType
 
 def loadInfo(address = 'https://191223.lordfilm4.black/7302-serial-hanna-2019.html'):
     pass
+
+
+def ClearUrls():
+    for item in Movie.objects.all():
+        mystr= item.url
+        if mystr[-1] == '\n':
+            item.url = mystr[0:-1]
+            item.save()
+            print('Corrected ' + item.url)
+
+def loadOneMovieUrl(url, movietype):
+    #ClearUrls()
+
+    #print(movietype)
+    try:
+        exist = Movie.objects.get(url=url)
+    except Movie.DoesNotExist:
+        newMovie = Movie()
+        newMovie.url = url
+        newMovie.type = movietype
+        newMovie.save()
+        print(f'Loaded {newMovie.type} = {newMovie.url}')
 
 def fileLoader(fileName, typestr, loadFile = False):
     res = None

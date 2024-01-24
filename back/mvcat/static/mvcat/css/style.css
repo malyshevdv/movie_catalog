@@ -15,6 +15,13 @@ div {
   justify-content: space-between;
 }
 
+.gormovie {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
 .centralspace {
   width: 100%;
 }
@@ -40,4 +47,10 @@ div {
 .maxheight {
   height: 100%;
   align-items : stretch
+}
+
+
+.poster_big {
+  width : "500px";
+  height : "100%"
 }
