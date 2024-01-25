@@ -1,5 +1,5 @@
 # movie_catalog
-movies catalog project
+movies catalog projectv
 
 It small movie catalog using Postgresql as a data storage system. 
 
