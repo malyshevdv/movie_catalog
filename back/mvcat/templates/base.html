@@ -51,18 +51,26 @@
     <div class="gor maxheight">
         <div id="sidebar">
             {% block sidebar %}
-            <ul>
-                <li><a href="/"  >Home</a></li>
-                <li><a href="/movietype/">Movie types</a></li>
-                <li><a href="/actors/">Actors/actress</a></li>
-                <li><a href="/movies/">All movies</a></li>
 
-            </ul>
+                <div class='item'>
+                    <a href="/">Home</a>
+                </div>
 
+                <div class='item'>
+                    <a href="/movietype/">Movie types</a>
+                </div>
+                <div class='item'>
+                    <a href="/actors/">Actors/actress</a>
+                </div>
+                <div class='item'>
+                    <a href="/movies/">All movies</a>
+                </div>
 
-            <ul>
-                <li><a href="/load/"  >LOAD</a></li>
-            </ul>
+                {%if user.is_authenticated%}
+                <div class='item'>
+                    <a href="/load/"  >LOAD</a>
+                </div>
+                {%endif%}
 
             {% endblock %}
 

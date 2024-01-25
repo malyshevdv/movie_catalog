@@ -1,11 +1,8 @@
-body {
-  background-color: powderblue;
-}
 h1 {
   color: blue;
 }
-div {
-  color: red;
+.div2 {
+
   border: 2px solid green;
 }
 
@@ -15,12 +12,51 @@ div {
   justify-content: space-between;
 }
 
-.gormovie {
+.gormovie1 {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-start;
+
+}
+.flex-container {
+  background-color: #f4f7f8;
+  resize: horizontal;
+  overflow: hidden;
+  display: flex;
+  margin: 1em;
+  flex-grow : 2 1 auto
+
 }
 
+.fl1 {
+
+    width : 40rem;
+    }
+.fl2 {
+    width : 20rem;
+    }
+.fl3 {
+    width : 20rem;
+    }
+
+.initial {
+  flex: initial;
+}
+
+.item {
+  margin: 1em;
+  padding: 0.5em;
+  width: 110px;
+  min-width: 0;
+  background-color: #1b5385;
+  color: white;
+  font-family: monospace;
+  font-size: 13px;
+
+  a:visited {
+    color: white;
+    }
+}
 
 .centralspace {
   width: 100%;

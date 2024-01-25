@@ -1,10 +1,9 @@
 import tempfile
 
-from ..forms import LoadMoviesFromFile
+from ..forms.forms import LoadMoviesFromFile
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from ..models import MovieType, Movie
 from ..dataprocessor import loadOneMovieUrl
 
 def loadFile(f, movietype):
@@ -48,6 +47,29 @@ def loadFile(f, movietype):
 
     res = '; '.join(mylist)
     return res
+
+def reverseInt(myInt):
+    newInt = 0
+    ost = 0
+
+    devider = 10
+    prevdivider = 0
+
+    while myInt < (devider*10):
+        ost = myInt % devider
+
+        newInt = newInt * devider + ost
+
+        prevdivider = devider
+        devider =  devider * 10
+
+
+    return newInt
+
+
+
+
+
 
 def LoadFromFileView(request):
 

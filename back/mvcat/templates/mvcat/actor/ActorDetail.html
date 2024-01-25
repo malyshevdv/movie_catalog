@@ -9,25 +9,55 @@
 <h2>MOVIES</h2>
 {% for item in movies %}
 <div class="gor">
-    <div>
-        <p>-Year:{{item.movie.year}}</p>
-        <h2>{{item.movie.title}}</h2>
-        <h2>-{{item.movie.titleRu}}</h2>
-        <p>-Cast position:{{item.stringposition}}</p>
+    <div class="flex-container">
+        <div class="fl1">
+            <p>{{item.year|default:'0000'}}</p>
+            <h2><a href="/movie/{{item.id}}">{{item.title|default:'NO NAME'}}</a></h2>
+            <h2>{{item.titleRu|default:'NO NAME'}}</h2>
 
-    </div>
 
-    <div>
-        <p>Actors/acress</p>
+        </div>
 
-    </div>
-    <div>
-        <p>Info</p>
+        <div class="fl2">
+            <p>Actors/acress</p>
+            <ul>
+            {% for itemactor in actors %}
+                {%if itemactor.movie_id == item.id%}
+                    <li> <a href="/actor/{{itemactor.actor.id}}">{{itemactor.actor}}</a></li>
+                {%endif%}
 
+            {% endfor%}
+            </ul>
+
+        </div>
+        <div class="fl3">
+            <p>Info</p>
+
+            <p>Directors</p>
+            <ul>
+            {% for itemactor in directors %}
+                {%if itemactor.movie_id == item.id%}
+                    <li> <a href="/actor/{{itemactor.actor.id}}">{{itemactor.director}}</a></li>
+                {%endif%}
+
+            {% endfor%}
+            </ul>
+
+            <p>Countries</p>
+            <ul>
+            {% for itemactor in countries %}
+                {%if itemactor.movie_id == item.id%}
+                    <li> <a href="/actor/{{itemactor.actor.id}}">{{itemactor.country}}</a></li>
+                {%endif%}
+
+            {% endfor%}
+            </ul>
+
+        </div>
     </div>
     <div>
         <p>Poster</p>
-        <img src="{{item.movie.poster}}">
+        <img src="{{item.poster}}">
     </div>
 
 

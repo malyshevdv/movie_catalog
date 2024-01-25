@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from ..models import Movie, MovieType
-from ..forms import MyForm, ActorForm
+from ..forms.forms import MyForm, ActorForm
 
 def Index(request):
 
