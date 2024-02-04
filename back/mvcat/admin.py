@@ -45,7 +45,7 @@ class movieJanresInlineTab(admin.TabularInline):
 class MovieAdmin(admin.ModelAdmin):
     list_display =('title', 'titleRu', 'year', 'is_published', 'url')
     list_filter = ['type', 'title']
-    inlines = [movieCastInlineTab, movieDirectorsInlineTab, movieCountryInlineTab]
+    inlines = [movieCastInlineTab, movieDirectorsInlineTab, movieCountryInlineTab, movieJanresInlineTab]
     search_fields = ['title', 'titleRu', 'url']
 
     actions = ['UpdateInfo']

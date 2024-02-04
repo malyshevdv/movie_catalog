@@ -26,22 +26,18 @@
             </div>
 
             <div  >
-                <p>JANRES</p>
-                {%for janreitem in item.janres%}
+                {%for janreitem in item.janres.all%}
                     <div>
+                        {%if janreitem.picturePath == ''%}
+
+                        {%else%}
+                            <img src= src="{% static 'mvcat/images/logo.png' %}" >
+                        {%endif%}
                         {{janreitem.name}}
                     </div>
                 {%endfor%}
-                 <div>
-                   HORROR
-                 </div>
-                 <div>
-                   HORROR
-                 </div>
-                 <div>
-                   HORROR
-                 </div>
-                
+
+
             </div>
 
         </div>

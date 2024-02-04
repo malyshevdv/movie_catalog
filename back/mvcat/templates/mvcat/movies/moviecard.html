@@ -19,42 +19,56 @@
             {{object.description}}</h1>
         </span>
 
-        <h4>Year: {{object.year}}</h4>
-        <h4>First date: {{object.date_premier}}</h4>
-        <h4>Quality: {{object.quality}}</h4>
-
-        <h4>Countries:</h4>
-        <ul>
-            {%for item in countries%}
-                <li> {{item.country}}</li>
-            {%endfor%}
-        </ul>
-
-        <h4>Actors:</h4>
-        <ul>
-            {%for item in actors%}
-                <li> <a href="/actor/{{item.actor.id}}">  {{item.actor}}</a></li>
-            {%endfor%}
-        </ul>
-
-        <h4>Directors:</h4>
-        <ul>
-            {%for item in directors%}
-                <li> {{item.director}}</li>
-            {%endfor%}
-        </ul>
-
-        <h4>Janres:</h4>
-        <ul>
-            {%for item in janres%}
-                <li> {{item.janre}}</li>
-            {%endfor%}
-        </ul>
+        <div class="gor">
+            <div>
+                <h4>Year: {{object.year}}</h4>
+                <h4>Actors:</h4>
+                <ul>
+                    {%for item in actors%}
+                        <li> <a href="/actor/{{item.actor.id}}">  {{item.actor}}</a></li>
+                    {%endfor%}
+                </ul>
 
 
 
-        <h4>Added: {{object.date_added}}</h4>
-        <h4>{{object.url}}</h4>
+                <h4>Countries:</h4>
+                <ul>
+                    {%for item in countries%}
+                        <li> {{item.country}}</li>
+                    {%endfor%}
+                </ul>
+
+                <h4>Directors:</h4>
+                <ul>
+                    {%for item in directors%}
+                        <li> {{item.director}}</li>
+                    {%endfor%}
+                </ul>
+
+
+
+
+
+            </div>
+
+            <div>
+                <h4>Janres:</h4>
+                <ul>
+                    {%for item in object.janres.all%}
+                        <li> {{item.name}}</li>
+                    {%endfor%}
+                </ul>
+
+                <h4>First date: {{object.date_premier}}</h4>
+                <h4>Quality: {{object.quality}}</h4>
+                <h4>Added: {{object.date_added}}</h4>
+                <h4>{{object.url}}</h4>
+
+            </div>
+            <div>
+            </div>
+
+        </div>
 
         <input type="button" value="UPDATE" onclick="PushAction({{object.id}}, 'UpdateMovieData', 'ActionForm')">
     </div>

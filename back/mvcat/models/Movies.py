@@ -31,6 +31,10 @@ class Movie(models.Model):
     auther = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     date_premier = models.DateField(null=True, blank=True)
 
+    #related fields
+    janres = models.ManyToManyField(Janres, through='MovieJanres')
+
+
     @property
     def is_published(self):
         """Determines if the book is overdue based on due date and current date."""
