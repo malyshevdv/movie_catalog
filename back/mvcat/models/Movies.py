@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from .Actors import Actor
 from .MovieType import MovieType
 from .Countries import Country
+from .Janres import Janres
 
 from datetime import date
 
@@ -62,3 +63,6 @@ class MovieCountries(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
+class MovieJanres(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    janre = models.ForeignKey(Janres, on_delete=models.CASCADE)

@@ -125,6 +125,14 @@ class Movie3:
         self.url = ''
         self.imdb = ''
         self.poster = ''
+    def __str__(self):
+
+        res = 'OBJECT STRUCTURE\n'
+        print(dir(self))
+        for MyItem in dir(self):
+            if MyItem[0:1] != '_':
+                res += f'{MyItem} : {self.__getattribute__(MyItem)}\n'
+        return res
 
 
 def loadFilmInfo(sampleAddress = 'https://191223.lordfilm4.black/7302-serial-hanna-2019.html'):
@@ -179,7 +187,7 @@ def loadFilmInfo(sampleAddress = 'https://191223.lordfilm4.black/7302-serial-han
                     myMovie.title = res[1]
                 elif res[0] == 'Год выхода':
                     myMovie.year = res[1]
-                elif res[0] == 'Режисер':
+                elif res[0] == 'Режиссер':
                     myMovie.directors = res[1].split(',')
                 elif res[0] == 'Страна':
                     myMovie.countries = res[1].split(',')

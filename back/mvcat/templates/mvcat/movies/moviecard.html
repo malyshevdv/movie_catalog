@@ -4,6 +4,11 @@
 
 {%block content%}
 <div class="gor">
+
+
+
+
+
     <div >
         movie description
         {# <h1>NAME : {{object.url}}</h1> #}
@@ -39,14 +44,27 @@
             {%endfor%}
         </ul>
 
+        <h4>Janres:</h4>
+        <ul>
+            {%for item in janres%}
+                <li> {{item.janre}}</li>
+            {%endfor%}
+        </ul>
+
+
 
         <h4>Added: {{object.date_added}}</h4>
         <h4>{{object.url}}</h4>
 
+        <input type="button" value="UPDATE" onclick="PushAction({{object.id}}, 'UpdateMovieData', 'ActionForm')">
     </div>
 
     <div class="poster_big">
-        <img width="500px" height="800px" src="{% static 'mvcat/images/movie_sample.png' %}">
+        {%if poster == ''%}
+            <img width="500px" height="800px" src="{% static 'mvcat/images/movie_sample.png' %}">
+        {%else%}
+            <img width="500px" src="{{object.poster}}" height="800px">
+        {%endif%}
     </div>
 
 

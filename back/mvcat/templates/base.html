@@ -3,13 +3,33 @@
 <html lang="en">
 <head>
 {% load static %}
-   <link rel="stylesheet" href={% static 'mvcat/css/style.css' %}>
+    <link rel="stylesheet" href={% static 'mvcat/css/style.css' %}>
+
+
     <title>{% block title %}My amazing site{% endblock %}</title>
+
 </head>
+<script>
+function ShowAllert(myStr){
+    alert('Hello alert!' + myStr)
+}
+
+function PushAction(MyId, Action, FormName){
+    var form = document.getElementById("ActionForm");
+    document.getElementById("id_MyId").value = MyId;
+    document.getElementById("id_Action").value = Action;
+    document.getElementById("id_FormName").value = FormName;
+    form.submit();
+}
+
+</script>
 
 <body>
+<script type="text/javascript" src={% static 'mvcat/js/dialogs.js' %}></script>
 
-    {% load static %}
+    <form action="" hidden="true" metod="get" id="ActionForm">
+        {{ActionForm}}
+    </form>
 
     <div class="gor">
 
@@ -27,6 +47,32 @@
 
             <p>Logged:{{user.is_authenticated}}</p>
         </div>
+
+        {% block SelectedActors %}
+
+        <form action="" method="get" id="deleteform" hidden="false">
+            {{DeleteSelectedActorForm}}
+        </form>
+
+        <script>
+            function PushDel(MyId){
+                var form = document.getElementById("deleteform");
+                document.getElementById("id_ItemId").value = MyId;
+                form.submit()
+            }
+        </script>
+
+
+            {%for item in SelectedActors%}
+
+                <div>
+                    {{item.name}}
+                    <input type="button" value="DEL" onclick="PushDel({{item.id}})" >
+                </div>
+
+            {%endfor%}
+        {% endblock SelectedActors %}
+
         <div class="gor">
             <div>
                 {% if user.is_authenticated %}
@@ -73,6 +119,35 @@
                 {%endif%}
 
             {% endblock %}
+
+            {% if SearchExist  %}
+                {% block searchblock%}
+
+                <form action="" method="get">
+                    {% csrf_token %}
+
+                    {% if SearchModel == 'Movie'  %}
+                    Movie
+                        {% for field in SearchForm %}
+                            <div class="fieldWrapper">
+                                {{ field.errors }}
+                                {{ field.label_tag }} {{ field }}
+                                {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {{SearchForm}}
+                    {% endif %}
+
+                    <input type="submit" value="Search">
+                </form>
+
+                {% endblock searchblock%}
+            {% endif %}
+
+
 
         </div>
 

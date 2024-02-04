@@ -13,6 +13,7 @@ class YearInSchool(models.TextChoices):
 
 
 class PhoneField(forms.MultiValueField):
+
     def __init__(self, **kwargs):
         # Define one message for all fields.
         error_messages = {

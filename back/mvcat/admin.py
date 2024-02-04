@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Actor, Movie, MovieCast, Country, MovieCountries, MovieDirectors, MovieType
+from .models import Actor, Movie, MovieCast, Country, MovieCountries, MovieDirectors, MovieType, Janres, MovieJanres
 from .loader import loadFilmInfo
 
 # Register your models here.
@@ -16,6 +16,9 @@ class CountryAdmin(admin.ModelAdmin):
 class MovieTypeAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
+@admin.register(Janres)
+class MovieTypeAdmin(admin.ModelAdmin):
+    search_fields = ['name']
 
 class movieCastInlineTab(admin.TabularInline):
     model = MovieCast
@@ -32,6 +35,10 @@ class movieCountryInlineTab(admin.TabularInline):
     autocomplete_fields = ['country']
     search_fields = ['name']
 
+class movieJanresInlineTab(admin.TabularInline):
+    model = MovieJanres
+    autocomplete_fields = ['janre']
+    search_fields = ['name']
 
 
 @admin.register(Movie)

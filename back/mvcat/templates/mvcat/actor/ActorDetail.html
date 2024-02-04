@@ -2,9 +2,24 @@
 
 {% load static %}
 
+
 {%block content%}
 
 <h1>{{object.name}}</h1>
+
+        <script>
+            function PushAddToCompare(){
+                var form = document.getElementById("AddActorToCompareForm");
+                form.submit()
+            }
+        </script>
+
+<form action="" method="get" hidden="true" id = 'AddActorToCompareForm' >
+    {{AddToCompareform}}
+    <input type="submit" value="ADD TO COMPARE"></input>
+</form>
+
+<input type="button" value="ADD TO COMPARE" onclick="PushAddToCompare()">
 
 <h2>MOVIES</h2>
 {% for item in movies %}

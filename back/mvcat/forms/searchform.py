@@ -1,5 +1,10 @@
 from django import forms
 
 
-class FindForm(forms.Form):
+class SearchForm(forms.Form):
+    formname = forms.HiddenInput
     searchstring = forms.CharField(max_length=100)
+
+
+
+

@@ -3,6 +3,26 @@
 
 {% block content %}
 
+<script>
+   function ShowAllert3(myStr){
+    //alert('Hello alert 3 !' + myStr)
+    myDialog = document.getElementById('actor_choose')
+    myDialog.showModal()
+}
+
+
+</script>
+
+<dialog id="actor_choose">
+    <div width="500px"> dfidfhsdjfhjshf
+    <p>Hello</p>
+
+    <input type="button" value="Ok" action="ShowAllert('DENIS')">
+    </div>
+</dialog>
+
+<input type="button" value="HHH" onclick="ShowAllert3('sdsdsd')">
+
 <h1>Actors and actress</h1>
 <ul>
 {%for item in object_list%}

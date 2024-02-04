@@ -1,5 +1,6 @@
-from .movieviews import MovieByActorListView, MovieByTypeListView, MovieListView, MovieDetailView
-from .indexviews import Index
+from .movieviews import MovieByActorListView, MovieByTypeListView, MovieListView
+from .MovieDetailView import MovieDetailView
+from .indexviews import Index, SerchView
 from .movietypeviews import MovieTypeView
 from .actorviews import ActorsListView,ActorDetailView
 from .loaddata import LoadMoviesFromFile, LoadFromFileView, LoadFromFileSuccessView

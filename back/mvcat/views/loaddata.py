@@ -51,7 +51,6 @@ def loadFile(f, movietype):
 def reverseInt(myInt):
     newInt = 0
     ost = 0
-
     devider = 10
     prevdivider = 0
 

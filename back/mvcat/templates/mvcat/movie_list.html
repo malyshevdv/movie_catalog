@@ -16,11 +16,42 @@
 {%for item in object_list%}
 
     <div class="movie_card_short">
-        <div>
-            <img src="{% static 'mvcat/images/movie_sample.png' %}">
+        <div class="gor">
+            <div >
+            {%if item.poster == ''   %}
+                <img src="{% static 'mvcat/images/movie_sample.png' %}">
+            {%else%}
+                <img src = {{item.poster}} >
+            {%endif%}
+            </div>
+
+            <div  >
+                <p>JANRES</p>
+                {%for janreitem in item.janres%}
+                    <div>
+                        {{janreitem.name}}
+                    </div>
+                {%endfor%}
+                 <div>
+                   HORROR
+                 </div>
+                 <div>
+                   HORROR
+                 </div>
+                 <div>
+                   HORROR
+                 </div>
+                
+            </div>
+
         </div>
         <div>
-            <li><a href='/movie/{{item.id}}'>{{item.url}}</a></li>
+            {%if item.title == ''%}
+                <a href='/movie/{{item.id}}'>{{item.url}}</a>
+            {%else%}
+                <h3><a href='/movie/{{item.id}}'>{{item.title}}</a></h3>
+                <h3><a href='/movie/{{item.id}}'>{{item.titleRu}}</a></h3>
+            {%endif%}
 
         </div>
 
