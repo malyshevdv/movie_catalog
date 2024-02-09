@@ -9,6 +9,31 @@ from ..models import Movie, MovieType, Actor, MovieCountries, MovieCast, MovieDi
 from ..dataprocessor import getSelectedActors, getSelectedActorsId, DeleteSelectedActor
 from ..forms import SearchMovieForm, DeleteSelectedActorForm
 from ..tasks import firsttask
+import django_filters
+
+
+class MovieListFilters(django_filters.FilterSet):
+    year = django_filters.NumberFilter(field_name='year')
+    title = django_filters.CharFilter(field_name='title', lookup_expr='icontains')
+
+    class Meta:
+        model = Movie
+        fields = ['title', 'year']
+
+def MovieListFilteredView(request):
+
+    f = MovieListFilters(request.GET, queryset=Movie.objects.all())
+    context = {
+        'SearchExist': False,
+        'filter' : f,
+        'DeleteSelectedActorForm': DeleteSelectedActorForm,
+
+    }
+    context['SelectedActors'] = getSelectedActors(request)
+
+    return render(request, 'cat3.html' , context=context)
+    #render(request, 'cat3.html', {'filter' : f} )
+
 
 
 # Create your views here.

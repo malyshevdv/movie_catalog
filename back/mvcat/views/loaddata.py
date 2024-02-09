@@ -1,10 +1,11 @@
 import tempfile
 
-from ..forms.forms import LoadMoviesFromFile
+from ..forms import LoadMoviesFromFile, ActionForm
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from ..dataprocessor import loadOneMovieUrl
+from ..dataprocessor import loadOneMovieUrl, HandleActionForm
 
 def loadFile(f, movietype):
     res = ''
@@ -93,8 +94,11 @@ def LoadFromFileView(request):
         #return HttpResponseRedirect('/success/loadfile', content=context)
 
     else:
+        HandleActionForm(request)
+
         context = {
             'form' : LoadMoviesFromFile,
+            'ActionForm' : ActionForm(),
             #'MovieTypes' : MovieType.objects.all()
         }
         return render(request, 'loadfile.html', context)

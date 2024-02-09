@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-
 from ..models.Countries import Country
+
 
 
 def validate_name(name:str):
@@ -12,7 +12,6 @@ def validate_name(name:str):
     else:
         print(name.find('Santa'))
 
-
 class Actor(models.Model):
     name = models.CharField(max_length=150, validators=[validate_name])
     birthday = models.DateField(null=True, blank=True)
@@ -20,3 +19,6 @@ class Actor(models.Model):
     country = models.ForeignKey(Country, null=True, blank=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.name
+
+
+

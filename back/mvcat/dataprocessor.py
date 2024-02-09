@@ -30,10 +30,29 @@ def HandleActionForm(request):
                     id = request.GET.get('MyId', 0)
                     print(f'Remove actor {id}')
 
-
+                case 'UpdateAllLinks':
+                    print('START LOADING...')
+                    StartUpdateAll()
+                    print('FINISHED.')
 
     elif request.method == 'POST':
         pass
+
+
+def StartUpdateAll():
+    myset = Movie.objects.all().filter(title__exact=None)
+    totalLength = len(myset)
+
+    for ind,MyMovie in enumerate(myset):
+        try:
+            UpdateOneMovie(MyMovie)
+            print(f'<  {ind}   {MyMovie.title}> => {MyMovie}')
+        except:
+            print(MyMovie.url)
+    print()
+
+
+
 
 
 def UpdateOneMovie(MyMovie):

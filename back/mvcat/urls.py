@@ -2,7 +2,7 @@ from django.urls import path
 from .views import Index, MovieTypeView, ActorsListView, ActorDetailView, SerchView,\
     MovieListView, MovieByTypeListView, \
     MovieByActorListView, MovieDetailView, \
-    LoadFromFileView, LoadFromFileSuccessView
+    LoadFromFileView, LoadFromFileSuccessView, MovieListFilteredView, actor_list_API, actor_detail_API
 
 
 
@@ -12,7 +12,9 @@ urlpatterns = [
    # path('cat3/', Cat3, name ='cat3'),
 
     path('movietype/', MovieTypeView.as_view()),
+
     path('movies/', MovieListView.as_view()),
+    path('moviesfiltered/', MovieListFilteredView),
 
     path('movies/type/<int:type>', MovieByTypeListView.as_view()),
     path('movies/actor/<actor_id>', MovieByActorListView.as_view()),
@@ -27,6 +29,10 @@ urlpatterns = [
     path('success/loadfile/', LoadFromFileSuccessView),
 
     path('search/', SerchView ),
+
+    #API
+    path('API/actors/', actor_list_API),
+    path('API/actors/<int:id>', actor_detail_API),
 
 
 ]
