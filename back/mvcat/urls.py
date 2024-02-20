@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import Index, MovieTypeView, ActorsListView, ActorDetailView, SerchView,\
     MovieListView, MovieByTypeListView, \
     MovieByActorListView, MovieDetailView, \
@@ -31,8 +31,8 @@ urlpatterns = [
     path('search/', SerchView ),
 
     #API
-    path('API/actors/', actor_list_API),
-    path('API/actors/<int:id>', actor_detail_API),
 
+
+    path('API/catalogs/', include('mvcat.models.Catalogs.urls')),
 
 ]

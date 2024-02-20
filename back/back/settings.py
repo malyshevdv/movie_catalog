@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-tm^1nyb5deq8ay2g-3c3(+c72knrbuhyz$*1z8_dkp0=^_ar0z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'http://localhost', '127.0.0.1']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'rest_framework',
     'django_filters',
+    'corsheaders',
 ]
 
 
@@ -54,17 +55,22 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'back.urls'
 
-#'DIRS': [],
-#'DIRS': [(os.path.join(BASE_DIR, 'templates'))],
+# 'DIRS': [],
+# 'DIRS': [(os.path.join(BASE_DIR, 'templates'))],
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [(os.path.join(BASE_DIR, 'templates'))],
+        'DIRS': [
+            (os.path.join(BASE_DIR, 'templates')),
+
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,12 +92,12 @@ WSGI_APPLICATION = 'back.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 #
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
-#}
+# }
 
 
 DATABASES = {
@@ -158,3 +164,33 @@ REST_FRAMEWORK = {
         ...
     ),
 }
+
+#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+
+
+]
+
+CORS_ALLOWED_ORIGIN = [
+    "http://siteyouwantto.allow.com",
+    "http://127.0.0.1",
+    "http://localhost",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "https://localhost:3000",
+
+]
+
+#CORS_ALLOWED_ORIGIN_REGEXES = [
+#    ]
+
+CSRF_TRUSTED_ORIGINS = [
+        'http://127.0.0.1',
+        'http://127.0.0.1:3000'
+        'http://localhost',
+        'http://localhost:3000',
+    ]

@@ -21,7 +21,8 @@ app.autodiscover_tasks()
 def debug_task(self):
     print(f'Request: {self.request!r}')
 
+
 @app.task()
 def sampletask(self):
-    print(f'Request: Sample task')
+    print('Request: Sample task')
     return 'sampletask'

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Actor, Movie, MovieCast, Country, MovieCountries, MovieDirectors, MovieType, Janres, MovieJanres
+from .models import Actor, Movie, MovieCast, MovieCountries, MovieDirectors, MovieType, Janres, MovieJanres
+from .models.Catalogs.Country.model import Country
 from .loader import loadFilmInfo
 
 # Register your models here.

@@ -1,5 +1,5 @@
-from .Actors import Actor
-from .MovieType import MovieType
-from .Movies import Movie, MovieCast, MovieDirectors, MovieType, MovieCountries, MovieJanres
+from .Catalogs.Actor.model import Actor
+from .movieType import MovieType
+from .movies import Movie, MovieCast, MovieDirectors, MovieCountries, MovieJanres
 from .Catalogs.Country.model import Country
-from .Janres import Janres
+from .janres import Janres
