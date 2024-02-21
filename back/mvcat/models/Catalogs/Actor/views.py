@@ -1,9 +1,32 @@
 from django.http import JsonResponse, HttpResponse
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+
 from rest_framework.parsers import JSONParser
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import pagination
 
 from .model import Actor
 from .serializer import ActorSerializer
+
+
+class CustomPagination(pagination.PageNumberPagination):
+    page_size = 2
+    page_size_query_param = 'page_size'
+    max_page_size = 50
+    page_query_param = 'p'
+
+class ActorsListViewAPI(ModelViewSet):
+    serializer_class = ActorSerializer
+    pagination_class = CustomPagination
+
+
+    def get_object(self):
+        return get_object_or_404(Actor, id=self.request.query_params.get("id"))
+
+    def get_queryset(self):
+        return Actor.objects.order_by('name')
+
 
 
 #@csrf_exempt
