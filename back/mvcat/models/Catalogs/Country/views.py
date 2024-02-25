@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .serializer import CountrySerializer
 from .model import Country
 
-@csrf_exempt
+#@csrf_exempt
 def REST_CountryList(request):
 
     if request.method == "GET":

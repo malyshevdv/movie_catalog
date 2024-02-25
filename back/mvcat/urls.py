@@ -2,8 +2,9 @@ from django.urls import path, include
 from .views import Index, MovieTypeView, ActorsListView, ActorDetailView, SerchView,\
     MovieListView, MovieByTypeListView, \
     MovieByActorListView, MovieDetailView, \
-    LoadFromFileView, LoadFromFileSuccessView, MovieListFilteredView, actor_list_API, actor_detail_API
+    LoadFromFileView, LoadFromFileSuccessView, MovieListFilteredView
 
+from .models.Catalogs.Country.views import REST_CountryList
 
 
 urlpatterns = [
@@ -32,7 +33,7 @@ urlpatterns = [
 
     #API
 
-
-    path('API/catalogs/', include('mvcat.models.Catalogs.urls')),
+    path('count/', REST_CountryList),
+    path('api/catalogs/', include('mvcat.models.urls_API')),
 
 ]
