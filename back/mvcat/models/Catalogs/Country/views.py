@@ -11,11 +11,6 @@ def REST_CountryList(request):
     if request.method == "GET":
         serializer = CountrySerializer(Country.objects.all(), many=True)
         response = JsonResponse(serializer.data, safe=False)
-        #dd = 1/0
-        #response["Access-Control-Allow-Origin"] = "*"
-        #response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
-        #response["Access-Control-Max-Age"] = "1000"
-        #response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
         response["Content-type"] = "application/json;  charset=utf-8"
 
         return response

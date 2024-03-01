@@ -2,10 +2,10 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 
-from .Catalogs.Actor.model import Actor
-from .movieType import MovieType
-from .Catalogs.Country.model import Country
-from .janres import Janres
+from mvcat.models.Catalogs.Actor.model import Actor
+from mvcat.models.movieType import MovieType
+from mvcat.models.Catalogs.Country.model import Country
+from mvcat.models.janres import Janres
 
 from datetime import date
 
